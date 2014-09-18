@@ -29,5 +29,6 @@ nmap <F8> :TagbarToggle<CR>
 " Ctags: Tags! (brew install ctags)
 set tags=./tags,tags,.git/tags;
 " Syntastic: Auto syntax checking (https://github.com/scrooloose/syntastic)
-let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_python_checkers = ['pep8']
