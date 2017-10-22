@@ -1,7 +1,7 @@
 set shell=bash
-set t_Co=256        
 syntax on
-colorscheme default
+set background=dark
+colorscheme solarized
 
 " expand tab character to spaces
 set expandtab
@@ -9,12 +9,17 @@ set expandtab
 " tab width
 set tabstop=4               " tab size = 4
 set shiftwidth=4
+set smartindent
 
 " view peripherals
 set number                  " line number
+set relativenumber
 set ruler                   " little ruler 
 set hlsearch                " highlight search result
-set cursorline              " highlight cursor line
+" set cursorline              " highlight cursor line
+"
+"set laststatus=2
+"set statusline=%!getcwd()
 
 " operation
 set mouse=c                 " mouse=c to make copy operation easier
@@ -32,19 +37,34 @@ set tags=./tags,tags,.git/tags;
 " Syntastic: Auto syntax checking (https://github.com/scrooloose/syntastic)
 " let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_python_checkers = ['pep8']
+" let g:syntastic_python_checkers = ['pep8']
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map tab Management
+" https://www.quora.com/How-do-I-switch-between-tabs-in-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap te  :tabedit<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
 
-map <C-t> :NERDTreeToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F7> :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Config Winmanager
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:winManagerWindowLayout="NERDTree|TagList"
-let g:NERDTree_title="[NERDTree]"
+let g:NERDTree_title="[Folder]"
+let g:NERDTreeMouseMode=3 
 
-nmap <C-m> :WMToggle<CR>
+"nmap <C-m> :WMToggle<CR>
 
 
 function! NERDTree_Start()  
@@ -72,6 +92,36 @@ let g:miniBufExplMoreThanOne=0
 let Tlist_Show_One_File=1  
 let Tlist_Exit_OnlyWindow=1  
 
-" map setting
-map 0 8k           
-map 9 9j
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Config vim-go 
+" https://github.com/fatih/vim-go
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+
+au FileType go nmap <Leader>i <Plug>(go-info)
+
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+
